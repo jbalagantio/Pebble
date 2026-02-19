@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pebble</title> 
+
+    <meta name="description" content="Pebble helps you organize your day by turning big intentions into small, clear actions. Build momentum gently, one step at a time.">
+    <meta name="author" content="Joshua Balagantio">
+    <link rel="icon" href="favicon-ngb.PNG" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+            <img src="logo-nbg.PNG" alt="Pebble" class="pebble-logo">
+            <h1 class="hero-text">Pebble</h1>
+            <p class="hero-description">A calm place to break big plans into small, manageable steps.</p>
+    </header>
+
+    <main>
+        <section class="add-pebble-container">
+            <h2 class="add-pebble-noice">Add a Pebble</h2>
+            <label for="pebble-input">Add a Pebble</label>
+            <input type="text" id="pebble-input" placeholder="Add your Pebble here.">
+            <button type="button" class="add-pebble-btn" aria-label="Add Pebble">✓</button>
+        </section>
+
+        <section class="pebble-main-list-container">
+            <h2>Your Pebbles</h2>
+            <div data-pebble-main-list></div>            
+            <p class="pebble-counter">You have 0 pebbles in your day.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© 2026 Pebble. Built as a learning project by Joshua Balagantio.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

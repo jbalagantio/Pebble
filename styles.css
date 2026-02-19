@@ -1,0 +1,213 @@
+/* === Global Reset === */
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* === Variables for color palette === */
+:root {
+  /* surfaces */
+  --bg-main: #f7f7f5;
+  --bg-elevated: #ffffff;
+
+  /* text */
+  --text-primary: #2f2f2f;
+  --text-muted: #6b6b6b;
+
+  /* brand */
+  --accent: #7a9e9f;
+  --accent-strong: #5c888a;
+
+  /* states */
+  --danger: #d46a6a;
+  --border: #e6e6e3;
+
+  /* extras */
+  --shadow-soft: 0 2px 6px rgba(0,0,0,0.05);
+  --radius: 12px;
+}
+
+/* === Spacing === */
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+section {
+  padding: 1.5rem, 1rem;
+}
+
+section + section {
+  margin-top:1.5rem;
+}
+
+
+[data-pebble-main-list]{
+  padding-left: 2rem;
+}
+
+ul, [data-pebble-main-list] {
+    list-style: none;
+}
+
+/* === Header === */
+header {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+.pebble-logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 0.5rem;
+} 
+
+.hero-text {
+  margin: 0;
+}
+
+.hero-description {
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.hero-text{
+  position: absolute;
+  left: -9999px;
+}
+
+/* === containment === */
+main {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.add-pebble-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.add-pebble-noice {
+  display: none;
+}
+
+.addpebble-container label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+
+}
+
+input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: 0.2 ease;
+  background: var(--bg-elevated);
+}
+
+input:focus{
+  border-color: var(--accent);
+}
+
+.pebble-counter {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align:center;
+}
+
+button {
+  padding: 0.5rem 0.7rem;
+  border: 1ps solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  transition: background 0.2 ease;
+}
+
+button:hover {
+  background: var(--bg-main);
+}
+
+.add-pebble-btn {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+.add-pebble-btn:hover {
+  background: var(--accent-strong);
+}
+
+.pebble-main-list-container h2 {
+  font-weight: 500;
+}
+
+
+.focus-mode {
+  padding: 1.5rem;
+  background: var(--bg-main);
+  border-radius: var(--radius);
+}
+
+.focus-mode input[type="text"]:first-of-type {
+  font-size: 1.4rem;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  padding-left:0;
+}
+
+.focus-mode button:first-of-type {
+  margin-bottom: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+}
+
+.focus-mode .sub-pebble-list-ul {
+  padding-left: 1rem;
+  border-left: 2px solid var(--border);
+  margin-left: 3rem;
+  padding-left: 1rem;
+}
+
+[data-pebble-main-list] div,
+[data-pebble-main-list] li span{
+  padding: 0.6rem 0;
+  cursor: pointer;
+}
+
+[data-pebble-main-list] li span:hover{
+  background: var(--bg-main);
+  border-radius: 6px;
+}
+
+.delete-btn {
+  color: var(--danger);
+  border-color: transparent;
+  background: transparent;
+}
+
+.delete-btn:hover{
+  background: rgba(212, 106, 106, 0.08);
+}
