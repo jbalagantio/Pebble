@@ -6,32 +6,95 @@ const pebbleMainList = document.querySelector('[data-pebble-main-list]')
 const pebbleMainListCounter = document.querySelector('.pebble-counter')
 const subPebbleListCounter = document.querySelector('.pebble-counter')
 
+
+
+// new pebble data structure
+const pebbleState = {
+    schemaVersion: 2,
+    data: [{
+        description: "",
+        id: "",
+        isSettled: false,
+        subpebbles: [
+            {
+                description: "",
+                id: "",
+                isSettled: false
+            }
+        ]
+    }]
+};
+
+// migrating v1 data to v2 data structure
+
+const migratePebbleData = (v1Data) => {
+    const v2Data = {
+        schemaVersion: 2,
+        data: v1Data.map(pebble => ({
+            description: pebble.text,
+            id: pebble.id,
+            isSettled: false,
+            subpebbles: pebble.subPebbles.map(subPebble => ({
+                description: subPebble.text,
+                id: subPebble.id,
+                isSettled: false
+            }))
+            
+        }))
+    };
+    return v2Data;
+};
+
+
+
 pebbleInput.addEventListener('keydown', (event) =>{
     if(event.key === 'Enter')
         addPebbleBtn.click();
 });
 
-
 // ======= saving pebbles for persistence =========
 function savePebbles () {
-    localStorage.setItem('pebbles', JSON.stringify(mainPebbles));
+    localStorage.setItem('pebbles', JSON.stringify({ schemaVersion: 2, data: mainPebbles }));
 }
    
+
 // ========= load pebbles ==============
 function loadPebbles () {
-    const storedPebbles = localStorage.getItem('pebbles');
-    if (storedPebbles) {
-        try {
-            mainPebbles = JSON.parse(storedPebbles);
-        } catch (error) {
-            console.log('Corrupted storage. Resetting.');
-            localStorage.removeItem('pebbles')
-            mainPebbles = [];
-            alert("Your saved Pebbles were corrupted and have been reset.");
-        }
-    mainPebbleRender();
+    const storedPebbles = localStorage.getItem("pebbles");
+    let pebbleData;
+
+     if (!storedPebbles) {
+
+        mainPebbles = [];
+        mainPebbleRender();
+        return;
     }
+
+    // parse storedPebble Data
+    try {
+        pebbleData = JSON.parse(storedPebbles);
+     } catch (error) {
+        console.log('Corrupted storage. Resetting.');
+        localStorage.removeItem('pebbles')
+        mainPebbles = [];
+        alert("Your saved Pebbles were corrupted and have been reset.");
+        mainPebbleRender();
+        return;
+    } 
+
+    if (pebbleData.schemaVersion !== 2) {
+
+        mainPebbles = migratePebbleData(pebbleData).data;
+        savePebbles();
+
+    } else {
+
+        mainPebbles = pebbleData.data;
+    };
+
+    mainPebbleRender();
 };
+
 
 //Adding Main Pebbles
 let mainPebbles = [] 
